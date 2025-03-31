@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Playlist UI</title>
+  <meta name="description" content="Simple playlist UI for the champions">
+  <meta name="keywords" content="playlist, user interface, ui, accessibility playlist, pwa, ammopy">
+  <meta name="author" content="AmMoPy">
+  <link rel="stylesheet" href="css/style.min.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <div class="container">
+    <!-- Left 25%: Playlist -->
+    <div class="playlist" id="playlist">
+      <div class="management-buttons">
+        <button id="selectAllBtn">Select All</button>
+        <h1>Playlist</h1>
+        <button id="deleteSelectedBtn">Delete Uploaded</button>
+      </div>
+      <ul id="playList"></ul>
+    </div>
+
+    <!-- Right 75%: Giant Controls -->
+    <div class="controls">
+      <button id="prevBtn" aria-label="Previous">⏮</button>
+      <button id="playPauseBtn" aria-label="Play/Pause">▶</button>
+      <button id="nextBtn" aria-label="Next">⏭</button>
+      <button id="uploadBtn" aria-label="Add files">
+        <span>+ Add Files</span>
+      </button>
+      <input type="file" id="fileUpload" accept="audio/*" multiple style="display: none;">
+    </div>
+  </div>
+
+  <!-- Hammer.js for gestures -->
+  <script src="js/hammer.min.js"></script>
+  <script src="js/app.min.js"></script>
+</body>
+</html>
