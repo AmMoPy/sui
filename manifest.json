@@ -1,20 +1,14 @@
 {
-  "name": "Simple UI",
+  "name": "SUI - Simple UI",
   "short_name": "SUI",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#000000",
-  "description": "Simple playlist UI for the champions",
+  "description": "Accessible audio player with 3D controls, offline playback, gesture support, and audio conversion",
   "icons": [
     {
-      "src": "assets/icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "assets/icons/icon-512.png",
+      "src": "assets/icons/arrow.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

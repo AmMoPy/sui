@@ -1,41 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="css/style.min.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Playlist UI</title>
-  <meta name="description" content="Simple playlist UI for the champions">
-  <meta name="keywords" content="playlist, user interface, ui, accessibility playlist, pwa, ammopy">
+  <meta http-equiv="Content-Security-Policy" content="
+  default-src 'self' blob:;
+  media-src 'self' blob: data: https://*.github.io https://raw.githubusercontent.com;
+  script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://*.github.io;
+  style-src 'self' 'unsafe-inline';
+  font-src 'self' data: https://*.github.io;
+  img-src 'self' data: https://*.github.io https://raw.githubusercontent.com;
+  connect-src 'self' https://*.github.io https://api.github.com;
+  ">
+  <title>SUI</title>
+  <meta name="description" content="Accessible audio player with 3D controls, offline playback, gesture support, and audio conversion">
+  <meta name="keywords" content="accessible playlist, accessible user interface, accessible ui, accessible media player, accessible music player, accessible audio player, accessible pwa, offline playback, offline media player, offline music player, gesture support audio player, gesture support media player, audio conversion, music converter, media converter, mp3 converter, mp4 converter, ffmpeg, mediainfo, pwa, single-page application (SPA)">
   <meta name="author" content="AmMoPy">
-  <link rel="stylesheet" href="css/style.min.css">
+  <meta property="og:title" content="SUI - Simple UI">
+  <meta property="og:description" content="Accessible audio player with 3D controls, offline playback, gesture support, and audio conversion">
+  <meta property="og:image" content="https://raw.githubusercontent.com/ammopy/sui/assets/icons/arrow.png">
+  <meta property="og:url" content="https://ammopy.github.io/sui/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SUI - Simple UI">
+  <meta name="twitter:description" content="Accessible audio player with 3D controls, offline playback, gesture support, and audio conversion">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/ammopy/sui/assets/icons/arrow.png">
+  <link rel="canonical" href="https://ammopy.github.io/sui/">
   <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- <link rel="preload" href="js/ffmpeg/ffmpeg-core.wasm" as="fetch" type="application/wasm" crossorigin="anonymous"> -->
+  <!-- <link rel="preload" href="js/mediainfo/MediaInfoModule.wasm" as="fetch" type="application/wasm" crossorigin="anonymous"> -->
+
+  <script>
+    // Flash of Inaccurate Color Theme (FOICT) prevention  
+    // When swithcing between dark/light mode
+    // Check local storage immediately and apply class to HTML element
+    // This runs before any DOM elements are rendered
+    (() => {
+      const colorMode = localStorage.getItem('colorMode') || '0'; // Default to 0 (dark)
+      const root = document.documentElement;
+      
+      // Set initial classes before DOM renders
+      root.classList.toggle('light-mode', colorMode === '1');
+      root.classList.toggle('no-animation', colorMode === '2');
+    })();
+  </script>
 </head>
 <body>
-  <div class="container">
-    <!-- Left 25%: Playlist -->
-    <div class="playlist" id="playlist">
-      <div class="management-buttons">
-        <button id="selectAllBtn">Select All</button>
-        <h1>Playlist</h1>
-        <button id="deleteSelectedBtn">Delete Uploaded</button>
-      </div>
-      <ul id="playList"></ul>
-    </div>
+  <!-- Floating Playlist Toggle Button -->
+  <button id="togglePlaylistBtn" class="playlist-toggle" title="Show Playlist" aria-label="Show Playlist">
+    <span class="toggle-icon">☰</span>
+  </button>
 
-    <!-- Right 75%: Giant Controls -->
-    <div class="controls">
-      <button id="prevBtn" aria-label="Previous">⏮</button>
-      <button id="playPauseBtn" aria-label="Play/Pause">▶</button>
-      <button id="nextBtn" aria-label="Next">⏭</button>
-      <button id="uploadBtn" aria-label="Add files">
-        <span>+ Add Files</span>
-      </button>
-      <input type="file" id="fileUpload" accept="audio/*" multiple style="display: none;">
+  <!-- Light Mode -->
+  <button id="light-mode-toggle" data-mode="moon">
+    <h1 class="brand-txt">SUI</h1>
+    <img src="assets/icons/dlm/sun.png" alt="Light Mode" class="light-mode-icon">
+    <img src="assets/icons/dlm/moon.png" alt="Dark Mode" class="dark-mode-icon">
+  </button>
+
+  <!-- Playlist Section -->
+  <section class="playlist-section" id="playlistSection">
+    <div class="playlist-header">
+      <h2>Playlist Controls</h2>
+      <div class="list-controls">    
+        <button id="selectAllBtn" title="Select all" aria-label="Select all">Select All</button>
+        <button id="deleteSelectedBtn" title="Delete selected" aria-label="Delete selected">Delete Selected</button>
+        <button id="sortControlBtn" title="Sort playlist" aria-label="Sort playlist"></button>
+      </div>
     </div>
-  </div>
+    <ul id="playList" class="scrollable-playlist"></ul>
+  </section>
+
+  <!-- Controls Section -->
+  <section class="controls-section">
+    <div class="circular-controls">
+      <!-- particles container -->
+      <div id="particles-js"></div>
+      <button id="prevBtn" class="control-btn" title="Previous" aria-label="Previous">⏮</button>
+      <button id="playPauseBtn" class="control-btn main-control" title="Play" aria-label="Play">▶</button>
+      <button id="nextBtn" class="control-btn" title="Next" aria-label="Next">⏭</button>
+      <button id="uploadBtn" class="control-btn upload-control" title="Add files" aria-label="Add files">
+        <span class="upload-text">Upload</span>
+      </button>
+      <input type="file" id="fileUpload" accept="audio/*" multiple hidden>
+    </div>
+  </section>
 
   <!-- Hammer.js for gestures -->
   <script src="js/hammer.min.js"></script>
-  <script src="js/app.min.js"></script>
+  <!-- Audio Compression and Conversion -->
+  <script src="js/ffmpeg/ffmpeg.min.js"></script>
+  <script src="js/mediainfo/mediainfo.js"></script>
+  <!-- Particles -->
+  <script src="js/particles/particles.min.js"></script>
+  <script src="js/particles/prtx.js"></script>
+  <!-- Main -->
+  <script type="module" src="js/app.min.js"></script>
 </body>
 </html>
