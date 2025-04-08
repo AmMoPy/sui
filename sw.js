@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v2'; // Update version when ASSETS change at each deployment.
+const CACHE_VERSION = 'v2.1'; // Update version when ASSETS change at each deployment.
 const CACHE_NAME = `SUI-${CACHE_VERSION}`;
 const ASSETS = [
   // Core files
@@ -7,12 +7,12 @@ const ASSETS = [
   'css/style.min.css',
   'css/fonts.css',
   // JavaScript (including dependencies)
-  'js/ffmpeg/814.ffmpeg.js',
-  'js/ffmpeg/ffmpeg.min.js',
-  'js/ffmpeg/ffmpeg-core.js',
-  'js/ffmpeg/ffmpeg-core.wasm',
-  'js/mediainfo/mediainfo.js',
-  'js/mediainfo/MediaInfoModule.wasm',
+  'js/ffmpeg/814.ffmpeg.js?v=0.12.15', //TODO: enhance this hardcoding partial fix
+  'js/ffmpeg/ffmpeg.min.js?v=0.12.15',
+  'js/ffmpeg/ffmpeg-core.js?v=0.12.10',
+  'js/ffmpeg/ffmpeg-core.wasm?v=0.12.10',
+  'js/mediainfo/mediainfo.js?v=0.3.5',
+  'js/mediainfo/MediaInfoModule.wasm?v=0.3.5',
   'js/particles/particles.min.js',
   'js/particles/prtx.js',
   'js/app.min.js',
