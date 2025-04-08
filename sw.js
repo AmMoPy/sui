@@ -1,38 +1,44 @@
-const CACHE_VERSION = 'v2.1'; // Update version when ASSETS change at each deployment.
-const CACHE_NAME = `SUI-${CACHE_VERSION}`;
+importScripts("vClassic.js"); // As long as both files are in the same directory, the relative path will work correctly
+
+const { LIB_V, FFMPEG_BASE, FFMPEG_V, FFMPEG_C_V, MEDIAINFO_BASE, MEDIAINFO_V } = AppVersions;
+console.log(LIB_V, FFMPEG_BASE, FFMPEG_V, FFMPEG_C_V, MEDIAINFO_BASE, MEDIAINFO_V);
+const CACHE_NAME = `SUI-${LIB_V}`; // Increment version when ASSETS change at each deployment
 const ASSETS = [
   // Core files
-  '/index.html',
+  `/index.html`,
   // CSS
-  'css/style.min.css',
-  'css/fonts.css',
+  `css/style.min.css`,
+  `css/fonts.css`,
   // JavaScript (including dependencies)
-  'js/ffmpeg/814.ffmpeg.js?v=0.12.15', //TODO: enhance this hardcoding partial fix
-  'js/ffmpeg/ffmpeg.min.js?v=0.12.15',
-  'js/ffmpeg/ffmpeg-core.js?v=0.12.10',
-  'js/ffmpeg/ffmpeg-core.wasm?v=0.12.10',
-  'js/mediainfo/mediainfo.js?v=0.3.5',
-  'js/mediainfo/MediaInfoModule.wasm?v=0.3.5',
-  'js/particles/particles.min.js',
-  'js/particles/prtx.js',
-  'js/app.min.js',
-  'js/constants.min.js',
-  'js/database.min.js',
-  'js/elements.min.js',
-  'js/events.min.js',
-  'js/hammer.min.js',
-  'js/playback.min.js',
-  'js/playlist.min.js',
-  'js/sorting.min.js',
-  'js/state.min.js',
-  'js/ui.min.js',
+  `/vClassic.js`,
+  `/versions.js`,
+  `js/vgp.js`,
+  `${FFMPEG_BASE}/814.ffmpeg.js?v=${FFMPEG_V}`,
+  `${FFMPEG_BASE}/ffmpeg.min.js?v=${FFMPEG_V}`,
+  `${FFMPEG_BASE}/ffmpeg-core.js?v=${FFMPEG_C_V}`,
+  `${FFMPEG_BASE}/ffmpeg-core.wasm?v=${FFMPEG_C_V}`,
+  `${MEDIAINFO_BASE}/mediainfo.js?v=${MEDIAINFO_V}`,
+  `${MEDIAINFO_BASE}/MediaInfoModule.wasm?v=${MEDIAINFO_V}`,
+  `js/particles/particles.min.js`,
+  `js/particles/prtx.js`,
+  `js/app.min.js`,
+  `js/constants.min.js`,
+  `js/database.min.js`,
+  `js/elements.min.js`,
+  `js/events.min.js`,
+  `js/hammer.min.js`,
+  `js/playback.min.js`,
+  `js/playlist.min.js`,
+  `js/sorting.min.js`,
+  `js/state.min.js`,
+  `js/ui.min.js`,
   // Assets
-  'assets/fonts/Chango/Chango-Regular.woff2',
-  'assets/icons/arrow.png',
-  'assets/icons/dlm/sun.png',
-  'assets/icons/dlm/moon.png',
-  'assets/main/better_day.mp3',
-  'assets/main/care.mp3'
+  `assets/fonts/Chango/Chango-Regular.woff2`,
+  `assets/icons/arrow.png`,
+  `assets/icons/dlm/sun.png`,
+  `assets/icons/dlm/moon.png`,
+  `assets/main/better_day.mp3`,
+  `assets/main/care.mp3`
 ];
 
 // ==============================================
