@@ -1,14 +1,14 @@
-<p align="center">
+<div align="center">
   <img width="20%" height="20%" src="assets/icons/arrow.png"> 
-</p>
 
-# SUI
+  # SUI
 
-# 🎵 Accessible Audio Player For The Champions
+  # 🎵 Accessible Audio Player For The Champions
 
-Accessible audio player with 3D controls, offline playback, gesture support, and audio conversion. Offering simple design that creates hassle-free experience at your finger tips.
+  Accessible audio player with 3D controls, offline playback, gesture support, and audio conversion. Offering simple design that creates hassle-free experience at your finger tips.
 
-Swipe to Navigate Back and Forth; Touch to Play/Pause!
+  Swipe to Navigate Back and Forth; Touch to Play/Pause!
+</div>
 
 ## ✨ Key Features
 

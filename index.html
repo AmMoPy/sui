@@ -7,15 +7,15 @@
   <meta http-equiv="Content-Security-Policy" content="
   default-src 'self' blob:;
   media-src 'self' blob: data: https://*.github.io https://raw.githubusercontent.com;
-  script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://*.github.io;
+  script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://*.github.io https://ammopy.goatcounter.com;
   style-src 'self' 'unsafe-inline';
   font-src 'self' data: https://*.github.io;
   img-src 'self' data: https://*.github.io https://raw.githubusercontent.com;
-  connect-src 'self' https://*.github.io https://api.github.com;
+  connect-src 'self' https://*.github.io https://api.github.com https://ammopy.goatcounter.com;
   ">
   <title>SUI</title>
   <meta name="description" content="Accessible audio player with 3D controls, offline playback, gesture support, and audio conversion">
-  <meta name="keywords" content="accessible playlist, accessible user interface, accessible ui, accessible media player, accessible music player, accessible audio player, accessible pwa, offline playback, offline media player, offline music player, gesture support audio player, gesture support media player, audio conversion, music converter, media converter, mp3 converter, mp4 converter, ffmpeg, mediainfo, pwa, single-page application (SPA)">
+  <meta name="keywords" content="accessible playlist, accessible user interface, accessible ui, accessible media player, accessible music player, accessible audio player, accessible pwa, offline playback, offline media player, offline music player, gesture support audio player, gesture support media player, audio conversion, music converter, media converter, mp3 converter, mp4 converter, ffmpeg, pwa, single-page application (SPA)">
   <meta name="author" content="AmMoPy">
   <meta property="og:title" content="SUI - Simple UI">
   <meta property="og:description" content="Accessible audio player with 3D controls, offline playback, gesture support, and audio conversion">
@@ -29,7 +29,6 @@
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <!-- <link rel="preload" href="js/ffmpeg/ffmpeg-core.wasm" as="fetch" type="application/wasm" crossorigin="anonymous"> -->
-  <!-- <link rel="preload" href="js/mediainfo/MediaInfoModule.wasm" as="fetch" type="application/wasm" crossorigin="anonymous"> -->
 
   <script>
     // Flash of Inaccurate Color Theme (FOICT) prevention  
@@ -87,16 +86,17 @@
     </div>
   </section>
 
-  <!-- Hammer.js for gestures -->
+  <!-- Gestures -->
   <script src="js/hammer.min.js"></script>
   <!-- Audio Compression and Conversion -->
   <!-- TODO: Auto update version -->
   <script src="js/ffmpeg/ffmpeg.min.js?v=0.12.15"></script>
-  <script src="js/mediainfo/mediainfo.js?v=0.3.5"></script>
-  <!-- Particles -->
+  <!-- Animations -->
   <script src="js/particles/particles.min.js"></script>
   <script src="js/particles/prtx.js"></script>
   <!-- Main -->
   <script type="module" src="js/app.min.js"></script>
+  <!-- GoatCounter Analytics -->
+  <script data-goatcounter="https://ammopy.goatcounter.com/count" async src="js/gc.min.js"></script>
 </body>
 </html>
