@@ -3,8 +3,8 @@
   "short_name": "SUI",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "background_color": "#00000A",
+  "theme_color": "#00000A",
   "description": "Accessible audio player with 3D controls, offline playback, gesture support, and audio conversion",
   "icons": [
     {
